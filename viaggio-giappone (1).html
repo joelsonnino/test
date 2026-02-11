@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaggio in Giappone - 10 Giorni tra Tradizione e Modernità</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FAF7F2;
+            --color-black: #1A1A1A;
+            --color-red: #C1272D;
+            --color-gold: #D4AF37;
+            --color-green: #4A7C59;
+            --color-gray: #6B6B6B;
+            --color-light-gray: #E8E3DB;
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--color-cream);
+            color: var(--color-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(193, 39, 45, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+            animation: drift 20s ease-in-out infinite;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            color: var(--color-cream);
+            max-width: 900px;
+            padding: 2rem;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        .hero-title strong {
+            font-weight: 700;
+            color: var(--color-red);
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+        
+        .meta-item {
+            text-align: center;
+        }
+        
+        .meta-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--color-light-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .meta-value {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-cream);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+        
+        .scroll-indicator span {
+            display: block;
+            width: 2px;
+            height: 30px;
+            background: var(--color-gold);
+            margin: 0 auto 0.5rem;
+        }
+        
+        .scroll-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-light-gray);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        
+        nav.scrolled .nav-links a {
+            color: var(--color-black);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav.scrolled .nav-logo {
+            color: var(--color-black);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--color-cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-red);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-red);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--color-black);
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--color-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-light-gray);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 3rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            padding-left: 3rem;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--color-cream);
+            border: 3px solid var(--color-red);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-marker {
+            transform: translateX(-50%) scale(1.1);
+            background: var(--color-red);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-content {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        
+        .timeline-day {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--color-red);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+        
+        .timeline-description {
+            color: var(--color-gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .timeline-highlights {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-gray);
+        }
+        
+        .timeline-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-red);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .pricing-card.visible,
+        .hotel-card.visible,
+        .info-box.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .activity-card.visible {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+        
+        .feature-description {
+            color: var(--color-gray);
+            line-height: 1.8;
+        }
+        
+        /* Inclusions Section */
+        .inclusions-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .inclusion-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+        
+        .inclusion-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-black);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .inclusion-box.included h3 {
+            color: var(--color-green);
+        }
+        
+        .inclusion-box.excluded h3 {
+            color: var(--color-red);
+        }
+        
+        .inclusion-list {
+            list-style: none;
+        }
+        
+        .inclusion-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--color-gray);
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        
+        .inclusion-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .inclusion-list li::before {
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .included .inclusion-list li::before {
+            content: '✓';
+            color: var(--color-green);
+        }
+        
+        .excluded .inclusion-list li::before {
+            content: '✗';
+            color: var(--color-red);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-red) 0%, #A02024 100%);
+            color: var(--color-cream);
+            text-align: center;
+            padding: 6rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--color-cream);
+            color: var(--color-red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--color-gold);
+            color: var(--color-black);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--color-black);
+            color: var(--color-cream);
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                text-align: left;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .inclusions-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .hotel-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .activities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero-meta {
+                gap: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-amount {
+                font-size: 2.5rem;
+            }
+            
+            .hotel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Decorative Elements */
+        .sakura-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15 L25 20 L30 25 L35 20 Z M30 35 L25 40 L30 45 L35 40 Z M15 30 L20 25 L25 30 L20 35 Z M35 30 L40 25 L45 30 L40 35 Z' fill='%23C1272D' fill-opacity='1'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        /* Pricing Tables */
+        .pricing-section {
+            background: linear-gradient(135deg, #FAF7F2 0%, #F0EBE3 100%);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--color-red);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'PIÙ SCELTO';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--color-red);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+        
+        .pricing-tier {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-card.featured .pricing-tier {
+            color: var(--color-red);
+        }
+        
+        .pricing-amount {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-amount small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--color-gray);
+        }
+        
+        .pricing-period {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features .feature-name {
+            color: var(--color-gray);
+        }
+        
+        .pricing-features .feature-value {
+            font-weight: 600;
+            color: var(--color-black);
+        }
+        
+        .pricing-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--color-black);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-button:hover {
+            background: var(--color-red);
+            transform: translateY(-2px);
+        }
+        
+        .pricing-card.featured .pricing-button {
+            background: var(--color-red);
+        }
+        
+        .pricing-card.featured .pricing-button:hover {
+            background: var(--color-black);
+        }
+        
+        /* Hotel Details */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .hotel-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+        
+        .hotel-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-black) 0%, #2D2D2D 100%);
+            color: white;
+        }
+        
+        .hotel-city {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hotel-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .hotel-body {
+            padding: 2rem;
+        }
+        
+        .hotel-options {
+            list-style: none;
+        }
+        
+        .hotel-option {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        
+        .hotel-option:last-child {
+            border-bottom: none;
+        }
+        
+        .hotel-tier-label {
+            font-weight: 600;
+            color: var(--color-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .hotel-tier-name {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Optional Activities */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .activity-card {
+            background: white;
+            border-left: 4px solid var(--color-gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            border-left-color: var(--color-red);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .activity-name {
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .activity-price {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-red);
+            font-weight: 600;
+        }
+        
+        /* Info Box */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+        
+        .info-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-black);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .info-box ul {
+            list-style: none;
+        }
+        
+        .info-box li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-gray);
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-red);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .price-breakdown {
+            background: linear-gradient(135deg, #F8F6F1 0%, #F0EBE3 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .price-breakdown h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+        
+        .price-breakdown table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .price-breakdown td {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        
+        .price-breakdown td:first-child {
+            color: var(--color-gray);
+        }
+        
+        .price-breakdown td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--color-black);
+        }
+        
+        .price-breakdown tr:last-child td {
+            border-bottom: 2px solid var(--color-red);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Background -->
+    <div class="sakura-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">日本の旅</a>
+            <ul class="nav-links">
+                <li><a href="#itinerario">Itinerario</a></li>
+                <li><a href="#prezzi">Prezzi</a></li>
+                <li><a href="#hotel">Hotel</a></li>
+                <li><a href="#incluso">Incluso</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Scopri l'essenza del Giappone</div>
+            <h1 class="hero-title">Viaggio in <strong>Giappone</strong></h1>
+            <p class="hero-description">Un'esperienza indimenticabile tra templi millenari, metropoli futuristiche e la maestosità del Monte Fuji</p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">📅</div>
+                    <div class="meta-label">Durata</div>
+                    <div class="meta-value">10 Giorni</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🗾</div>
+                    <div class="meta-label">Destinazioni</div>
+                    <div class="meta-value">5 Città</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">💶</div>
+                    <div class="meta-label">A partire da</div>
+                    <div class="meta-value">€2.950</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <div class="scroll-text">Scorri</div>
+        </div>
+    </section>
+    
+    <!-- Itinerary Timeline -->
+    <section id="itinerario">
+        <div class="section-header">
+            <div class="section-subtitle">Il Percorso</div>
+            <h2 class="section-title">Itinerario Dettagliato</h2>
+            <p class="section-description">Ogni giorno un'esperienza unica tra le meraviglie del Giappone</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">✈️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 1</div>
+                    <h3 class="timeline-title">Partenza dall'Italia</h3>
+                    <p class="timeline-description">L'avventura ha inizio! Partenza dall'aeroporto di riferimento con volo intercontinentale diretto a Tokyo.</p>
+                    <ul class="timeline-highlights">
+                        <li>Volo intercontinentale per Tokyo</li>
+                        <li>Pasti e pernottamento a bordo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🗼</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 2</div>
+                    <h3 class="timeline-title">Arrivo a Tokyo</h3>
+                    <p class="timeline-description">Benvenuti nella capitale del Giappone! Transfer privato in hotel e primo approccio con la vibrante città di Tokyo.</p>
+                    <ul class="timeline-highlights">
+                        <li>Transfer privato in hotel</li>
+                        <li>Passeggiata serale a Shinjuku o Shibuya</li>
+                        <li>Check-in e tempo libero</li>
+                        <li>Hotel: €70-350 a notte (in base alla categoria)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🏯</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 3</div>
+                    <h3 class="timeline-title">Tokyo Tradizionale e Moderna</h3>
+                    <p class="timeline-description">Un giorno dedicato ai contrasti di Tokyo: dall'antico tempio Senso-ji alla frenesia di Shibuya Crossing.</p>
+                    <ul class="timeline-highlights">
+                        <li>Tempio Senso-ji ad Asakusa</li>
+                        <li>Quartiere tradizionale di Asakusa</li>
+                        <li>Meiji Shrine</li>
+                        <li>Shibuya Crossing</li>
+                        <li>Osservatorio panoramico</li>
+                        <li>Guida parlante italiano/inglese + ingressi: €40-75</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🛍️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 4</div>
+                    <h3 class="timeline-title">Tokyo Libera</h3>
+                    <p class="timeline-description">Giornata libera per esplorare Tokyo secondo i vostri interessi personali.</p>
+                    <ul class="timeline-highlights">
+                        <li>Akihabara (tecnologia e anime)</li>
+                        <li>TeamLab Planets (museo immersivo) - €25-35</li>
+                        <li>Shopping a Ginza</li>
+                        <li>Tokyo Skytree - €25-35</li>
+                        <li>Disneyland/DisneySea - €85-100</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">⛰️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 5</div>
+                    <h3 class="timeline-title">Hakone e Monte Fuji</h3>
+                    <p class="timeline-description">Escursione indimenticabile con vista sul Monte Fuji e pernottamento in un autentico ryokan tradizionale.</p>
+                    <ul class="timeline-highlights">
+                        <li>Lago Ashi - Crociera €15</li>
+                        <li>Funivia di Owakudani - €15-18</li>
+                        <li>Vista sul Monte Fuji (meteo permettendo)</li>
+                        <li>Open-Air Museum - €15</li>
+                        <li>Pernottamento in ryokan - €90-180</li>
+                        <li>Cena kaiseki tradizionale inclusa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🚅</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 6</div>
+                    <h3 class="timeline-title">Kyoto</h3>
+                    <p class="timeline-description">Viaggio in treno Shinkansen verso l'antica capitale imperiale. Passeggiata serale nel suggestivo quartiere Gion.</p>
+                    <ul class="timeline-highlights">
+                        <li>Trasferimento in Shinkansen (incluso con JR Pass)</li>
+                        <li>Senza JR Pass: circa €110 a/r</li>
+                        <li>Check-in in hotel</li>
+                        <li>Passeggiata a Gion</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">⛩️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 7</div>
+                    <h3 class="timeline-title">Kyoto: Templi e Tradizioni</h3>
+                    <p class="timeline-description">Immersione totale nella spiritualità giapponese visitando i templi più iconici di Kyoto.</p>
+                    <ul class="timeline-highlights">
+                        <li>Fushimi Inari (i torii rossi) - ingresso gratuito</li>
+                        <li>Kinkaku-ji (Padiglione d'Oro) - €5-7</li>
+                        <li>Tempio Ryoan-ji - €4-6</li>
+                        <li>Guida locale 4h - €60-80</li>
+                        <li>Tempo libero</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🦌</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 8</div>
+                    <h3 class="timeline-title">Nara e Osaka</h3>
+                    <p class="timeline-description">Visita a Nara con i suoi cervi sacri e proseguimento verso la vivace Osaka.</p>
+                    <ul class="timeline-highlights">
+                        <li>Tempio Todai-ji - ingresso €7-10</li>
+                        <li>Parco dei cervi sacri (gratuito)</li>
+                        <li>Serata a Dotonbori</li>
+                        <li>Street food giapponese - €15-30</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🏙️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 9</div>
+                    <h3 class="timeline-title">Osaka Libera</h3>
+                    <p class="timeline-description">Ultima giornata per esplorare Osaka e i suoi tesori nascosti.</p>
+                    <ul class="timeline-highlights">
+                        <li>Castello di Osaka - €8-10</li>
+                        <li>Umeda Sky Building - €15-20</li>
+                        <li>Shopping</li>
+                        <li>Ultima cena in Giappone</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">✈️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 10</div>
+                    <h3 class="timeline-title">Rientro in Italia</h3>
+                    <p class="timeline-description">Transfer in aeroporto e volo di rientro con il cuore pieno di ricordi indimenticabili.</p>
+                    <ul class="timeline-highlights">
+                        <li>Transfer in aeroporto</li>
+                        <li>Volo di rientro</li>
+                        <li>Arrivo in Italia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="prezzi">
+        <div class="section-header">
+            <div class="section-subtitle">I Nostri Pacchetti</div>
+            <h2 class="section-title">Scegli la Tua Esperienza</h2>
+            <p class="section-description">Tre livelli di comfort per vivere il Giappone nel modo che preferisci</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier">Base</div>
+                <div class="pricing-amount">€2.950<small>/persona</small></div>
+                <div class="pricing-period">Esperienza autentica e accessibile</div>
+                
+                <ul class="pricing-features">
+                    <li>
+                        <span class="feature-name">Volo A/R</span>
+                        <span class="feature-value">✓</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Hotel</span>
+                        <span class="feature-value">3★ / 4★</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">JR Pass</span>
+                        <span class="feature-value">7 giorni</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Ryokan</span>
+                        <span class="feature-value">1 notte</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Visite guidate</span>
+                        <span class="feature-value">Incluse</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Trasferimenti</span>
+                        <span class="feature-value">Standard</span>
+                    </li>
+                </ul>
+                
+                <button class="pricing-button" onclick="window.location.href='#contatti'">Prenota Ora</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-tier">Standard</div>
+                <div class="pricing-amount">€4.050<small>/persona</small></div>
+                <div class="pricing-period">Comfort e servizi superiori</div>
+                
+                <ul class="pricing-features">
+                    <li>
+                        <span class="feature-name">Volo A/R</span>
+                        <span class="feature-value">✓</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Hotel</span>
+                        <span class="feature-value">4★ Superior</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">JR Pass</span>
+                        <span class="feature-value">7 giorni</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Ryokan</span>
+                        <span class="feature-value">Premium</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Visite guidate</span>
+                        <span class="feature-value">Estese</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Trasferimenti</span>
+                        <span class="feature-value">Privati</span>
+                    </li>
+                </ul>
+                
+                <button class="pricing-button" onclick="window.location.href='#contatti'">Prenota Ora</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-tier">Lusso</div>
+                <div class="pricing-amount">€5.550<small>/persona</small></div>
+                <div class="pricing-period">Esperienza esclusiva 5 stelle</div>
+                
+                <ul class="pricing-features">
+                    <li>
+                        <span class="feature-name">Volo A/R</span>
+                        <span class="feature-value">Business</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Hotel</span>
+                        <span class="feature-value">5★ Luxury</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">JR Pass</span>
+                        <span class="feature-value">Green Car</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Ryokan</span>
+                        <span class="feature-value">5★ Deluxe</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Visite guidate</span>
+                        <span class="feature-value">Private</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Trasferimenti</span>
+                        <span class="feature-value">Privati Luxury</span>
+                    </li>
+                </ul>
+                
+                <button class="pricing-button" onclick="window.location.href='#contatti'">Prenota Ora</button>
+            </div>
+        </div>
+        
+        <div class="price-breakdown">
+            <h4>Esempio di Suddivisione Costi (Pacchetto Standard)</h4>
+            <table>
+                <tr>
+                    <td>Volo A/R da Italia</td>
+                    <td>€1.150</td>
+                </tr>
+                <tr>
+                    <td>Hotel 4★ Superior (9 notti)</td>
+                    <td>€1.250</td>
+                </tr>
+                <tr>
+                    <td>Japan Rail Pass (7 giorni)</td>
+                    <td>€230</td>
+                </tr>
+                <tr>
+                    <td>Trasferimenti e trasporti locali</td>
+                    <td>€180</td>
+                </tr>
+                <tr>
+                    <td>Visite guidate e ingressi</td>
+                    <td>€320</td>
+                </tr>
+                <tr>
+                    <td>Esperienza Ryokan con cena kaiseki</td>
+                    <td>€180</td>
+                </tr>
+                <tr>
+                    <td>Assistenza e servizi</td>
+                    <td>€740</td>
+                </tr>
+                <tr>
+                    <td><strong>Totale Pacchetto</strong></td>
+                    <td><strong>€4.050</strong></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    
+    <!-- Hotel Details Section -->
+    <section id="hotel" style="background: white;">
+        <div class="section-header">
+            <div class="section-subtitle">Sistemazioni</div>
+            <h2 class="section-title">Hotel Selezionati</h2>
+            <p class="section-description">Strutture accuratamente scelte in ogni destinazione per garantire comfort e autenticità</p>
+        </div>
+        
+        <div class="hotel-grid">
+            <div class="hotel-card">
+                <div class="hotel-header">
+                    <div class="hotel-city">🗼 Tokyo</div>
+                    <div class="hotel-name">Sistemazioni nella Capitale</div>
+                </div>
+                <div class="hotel-body">
+                    <ul class="hotel-options">
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Base</div>
+                            <div class="hotel-tier-name">Hotel Sunroute Plaza Shinjuku</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Standard</div>
+                            <div class="hotel-tier-name">Hotel Monterey Ginza</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Lusso</div>
+                            <div class="hotel-tier-name">The Gate Hotel Asakusa Kaminarimon</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <div class="hotel-header">
+                    <div class="hotel-city">⛰️ Hakone</div>
+                    <div class="hotel-name">Ryokan Tradizionale</div>
+                </div>
+                <div class="hotel-body">
+                    <ul class="hotel-options">
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Tutti i Pacchetti</div>
+                            <div class="hotel-tier-name">Ryokan tradizionale con onsen e vista sul Monte Fuji</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Incluso</div>
+                            <div class="hotel-tier-name">Cena kaiseki tradizionale giapponese</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Esperienza</div>
+                            <div class="hotel-tier-name">Yukata, tatami e bagno termale</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <div class="hotel-header">
+                    <div class="hotel-city">⛩️ Kyoto</div>
+                    <div class="hotel-name">Hotel nell'Antica Capitale</div>
+                </div>
+                <div class="hotel-body">
+                    <ul class="hotel-options">
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Base</div>
+                            <div class="hotel-tier-name">Hotel Gracery Kyoto Sanjo</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Standard</div>
+                            <div class="hotel-tier-name">Kyoto Century Hotel</div>
+                        </li>
+                        <li class="hotel-option">
+                            <div class="hotel-tier-label">Lusso</div>
+                            <div class="hotel-tier-name">The Royal Park Hotel Kyoto Sanjo</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Optional Activities Section -->
+    <section style="background: linear-gradient(135deg, #FAF7F2 0%, #F0EBE3 100%);">
+        <div class="section-header">
+            <div class="section-subtitle">Esperienze Extra</div>
+            <h2 class="section-title">Attività Opzionali</h2>
+            <p class="section-description">Arricchisci il tuo viaggio con esperienze uniche (non incluse nel pacchetto base)</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-name">🎨 TeamLab Planets Tokyo</div>
+                <div class="activity-price">€25-35</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🏙️ Tokyo Skytree Observatory</div>
+                <div class="activity-price">€25-35</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🎢 Tokyo Disneyland / DisneySea</div>
+                <div class="activity-price">€85-100</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🎨 Hakone Open-Air Museum</div>
+                <div class="activity-price">€15</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">⛴️ Crociera Lago Ashi</div>
+                <div class="activity-price">€15</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🚡 Funivia Owakudani</div>
+                <div class="activity-price">€15-18</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🏯 Castello di Osaka</div>
+                <div class="activity-price">€8-10</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🌆 Umeda Sky Building</div>
+                <div class="activity-price">€15-20</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">💣 Tour Hiroshima & Miyajima</div>
+                <div class="activity-price">€120-180</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">⛩️ Escursione a Nikko</div>
+                <div class="activity-price">€100-130</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">🎭 Cena con Maiko a Kyoto</div>
+                <div class="activity-price">€120-170</div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-name">♨️ Visita Onsen Tradizionale</div>
+                <div class="activity-price">€25-40</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Practical Information Section -->
+    <section style="background: white;">
+        <div class="section-header">
+            <div class="section-subtitle">Informazioni Utili</div>
+            <h2 class="section-title">Tutto Ciò che Devi Sapere</h2>
+        </div>
+        
+        <div class="info-boxes">
+            <div class="info-box">
+                <h3>📋 Documenti Necessari</h3>
+                <ul>
+                    <li>Passaporto con validità residua minima 6 mesi</li>
+                    <li>Visto turistico non richiesto (fino a 90 giorni per cittadini UE)</li>
+                    <li>Assicurazione medica di viaggio consigliata</li>
+                    <li>Carta di credito internazionale</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>🍱 Pasti</h3>
+                <ul>
+                    <li>Cena kaiseki in ryokan inclusa (Giorno 5)</li>
+                    <li>Colazioni hotel: €8-15 al giorno</li>
+                    <li>Pranzi/cene liberi: €12-40 a pasto</li>
+                    <li>Street food a Dotonbori: €15-30</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>🚇 Trasporti Locali</h3>
+                <ul>
+                    <li>Japan Rail Pass 7 giorni: €230 (incluso)</li>
+                    <li>Metropolitana Tokyo/Kyoto/Osaka: €6-10/giorno</li>
+                    <li>Transfer aeroporto: €60-90 per tratta</li>
+                    <li>Taxi: disponibili ma costosi</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>💳 Condizioni di Pagamento</h3>
+                <ul>
+                    <li>Acconto 30% alla conferma della prenotazione</li>
+                    <li>Saldo 30 giorni prima della partenza</li>
+                    <li>Pagamenti con bonifico bancario o carta di credito</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>🔄 Politiche di Cancellazione</h3>
+                <ul>
+                    <li>Oltre 60 giorni prima: penale 10%</li>
+                    <li>59-30 giorni prima: penale 30%</li>
+                    <li>Meno di 30 giorni: penale 100%</li>
+                    <li>Assicurazione annullamento disponibile: €45-80</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>🛡️ Assicurazione Viaggio</h3>
+                <ul>
+                    <li>Assicurazione base: €45-60</li>
+                    <li>Assicurazione premium: €60-80</li>
+                    <li>Copertura medica, bagagli e annullamento</li>
+                    <li>Fortemente consigliata per tutti i viaggiatori</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="servizi" style="background: white;">
+        <div class="section-header">
+            <div class="section-subtitle">I Nostri Servizi</div>
+            <h2 class="section-title">Un Viaggio Pensato per Voi</h2>
+            <p class="section-description">Comfort, cultura e autenticità in ogni momento del vostro viaggio</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏨</div>
+                <h3 class="feature-title">Hotel Selezionati</h3>
+                <p class="feature-description">Sistemazioni 3*/4* accuratamente selezionate in posizioni strategiche</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎌</div>
+                <h3 class="feature-title">Guide Esperte</h3>
+                <p class="feature-description">Accompagnamento con guide in italiano o inglese esperte della cultura giapponese</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🚄</div>
+                <h3 class="feature-title">Shinkansen</h3>
+                <p class="feature-description">Viaggio sul leggendario treno proiettile giapponese incluso nel pacchetto</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏯</div>
+                <h3 class="feature-title">Ryokan Tradizionale</h3>
+                <p class="feature-description">Esperienza autentica di pernottamento in ryokan con cena kaiseki</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🗾</div>
+                <h3 class="feature-title">Transfer Privati</h3>
+                <p class="feature-description">Comodi trasferimenti privati da e per gli aeroporti</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3 class="feature-title">Esperienze Uniche</h3>
+                <p class="feature-description">Visite guidate ai luoghi più iconici e suggestivi del Giappone</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Inclusions Section -->
+    <section id="incluso">
+        <div class="section-header">
+            <div class="section-subtitle">Dettagli del Pacchetto</div>
+            <h2 class="section-title">Cosa Include il Viaggio</h2>
+        </div>
+        
+        <div class="inclusions-wrapper">
+            <div class="inclusion-box included">
+                <h3>✓ Cosa Include</h3>
+                <ul class="inclusion-list">
+                    <li>Voli A/R dall'Italia</li>
+                    <li>Trasferimenti principali</li>
+                    <li>Hotel 3*/4* per 9 notti</li>
+                    <li>Treno Shinkansen Tokyo-Kyoto</li>
+                    <li>Visite guidate ai principali siti</li>
+                    <li>Assistenza in italiano o inglese</li>
+                    <li>1 notte in ryokan tradizionale</li>
+                    <li>Cena kaiseki a Hakone</li>
+                </ul>
+            </div>
+            
+            <div class="inclusion-box excluded">
+                <h3>✗ Cosa Non Include</h3>
+                <ul class="inclusion-list">
+                    <li>Pasti non esplicitamente menzionati</li>
+                    <li>Assicurazione viaggio (facoltativa ma consigliata)</li>
+                    <li>Spese personali</li>
+                    <li>Attività ed escursioni opzionali</li>
+                    <li>Mance</li>
+                    <li>Bevande ai pasti</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section" id="contatti">
+        <div class="cta-content">
+            <h2 class="cta-title">Pronto per l'Avventura?</h2>
+            <p class="cta-description">Contattaci per ricevere un preventivo personalizzato e iniziare a pianificare il tuo viaggio da sogno in Giappone. Pacchetti a partire da €2.950 per persona.</p>
+            <a href="mailto:info@agenzia-viaggi.it?subject=Richiesta Info - Viaggio Giappone 10 Giorni" class="cta-button">Richiedi Informazioni</a>
+            <div style="margin-top: 2rem; opacity: 0.9; font-size: 0.95rem;">
+                <p>📞 Tel: +39 02 1234 5678 | ✉️ info@agenzia-viaggi.it</p>
+                <p style="margin-top: 0.5rem;">Acconto 30% alla conferma • Pagamenti sicuri • Assistenza h24</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 1;">🌸 Vivi il Giappone con Noi 🌸</p>
+        <p>&copy; 2026 Agenzia Viaggi | Tutti i diritti riservati</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            I prezzi indicati sono da considerarsi indicativi e soggetti a variazioni in base alla disponibilità e al periodo di prenotazione.
+        </p>
+    </footer>
+    
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for timeline items
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
+        });
+        
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+        
+        // Observe pricing cards
+        document.querySelectorAll('.pricing-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Observe hotel cards
+        document.querySelectorAll('.hotel-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Observe activity cards
+        document.querySelectorAll('.activity-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.05}s`;
+            card.style.opacity = '0';
+            card.style.transform = 'translateX(-20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Observe info boxes
+        document.querySelectorAll('.info-box').forEach((box, index) => {
+            box.style.transitionDelay = `${index * 0.1}s`;
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(30px)';
+            box.style.transition = 'all 0.6s ease';
+            observer.observe(box);
+        });
+    </script>
+</body>
+</html>
