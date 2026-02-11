@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camposcuola Umbria - Liceo Manzoni 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FAF7F2;
+            --color-black: #1A1A1A;
+            --color-green: #2D5016;
+            --color-gold: #D4AF37;
+            --color-blue: #4A7C9D;
+            --color-gray: #6B6B6B;
+            --color-light-gray: #E8E3DB;
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--color-cream);
+            color: var(--color-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2D5016 0%, #4A7C59 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(74, 124, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: drift 20s ease-in-out infinite;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            color: var(--color-cream);
+            max-width: 900px;
+            padding: 2rem;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        .hero-title strong {
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+        
+        .meta-item {
+            text-align: center;
+        }
+        
+        .meta-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--color-light-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .meta-value {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-cream);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+        
+        .scroll-indicator span {
+            display: block;
+            width: 2px;
+            height: 30px;
+            background: var(--color-gold);
+            margin: 0 auto 0.5rem;
+        }
+        
+        .scroll-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-light-gray);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        
+        nav.scrolled .nav-links a {
+            color: var(--color-black);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav.scrolled .nav-logo {
+            color: var(--color-black);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--color-cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-green);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--color-black);
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--color-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-light-gray);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 3rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            padding-left: 3rem;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--color-cream);
+            border: 3px solid var(--color-green);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-marker {
+            transform: translateX(-50%) scale(1.1);
+            background: var(--color-green);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-content {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        
+        .timeline-day {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--color-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+        
+        .timeline-description {
+            color: var(--color-gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .timeline-highlights {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-gray);
+        }
+        
+        .timeline-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-green);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+        
+        .feature-description {
+            color: var(--color-gray);
+            line-height: 1.8;
+        }
+        
+        /* Inclusions Section */
+        .inclusions-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .inclusion-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+        
+        .inclusion-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-black);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .inclusion-box.included h3 {
+            color: var(--color-green);
+        }
+        
+        .inclusion-box.excluded h3 {
+            color: var(--color-blue);
+        }
+        
+        .inclusion-list {
+            list-style: none;
+        }
+        
+        .inclusion-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--color-gray);
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        
+        .inclusion-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .inclusion-list li::before {
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .included .inclusion-list li::before {
+            content: '✓';
+            color: var(--color-green);
+        }
+        
+        .excluded .inclusion-list li::before {
+            content: '📝';
+            color: var(--color-blue);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-green) 0%, #4A7C59 100%);
+            color: var(--color-cream);
+            text-align: center;
+            padding: 6rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-price {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--color-gold);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--color-cream);
+            color: var(--color-green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--color-gold);
+            color: var(--color-black);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--color-black);
+            color: var(--color-cream);
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                text-align: left;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .inclusions-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero-meta {
+                gap: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Decorative Elements */
+        .leaf-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15 Q35 20 30 30 Q25 20 30 15 M30 35 Q35 40 30 50 Q25 40 30 35 M15 30 Q20 35 30 30 Q20 25 15 30 M45 30 Q50 35 60 30 Q50 25 45 30' fill='%232D5016' fill-opacity='1'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Background -->
+    <div class="leaf-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Liceo Manzoni</a>
+            <ul class="nav-links">
+                <li><a href="#programma">Programma</a></li>
+                <li><a href="#attivita">Attività</a></li>
+                <li><a href="#dettagli">Dettagli</a></li>
+                <li><a href="#iscrizioni">Iscrizioni</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Liceo Manzoni • Primavera 2026</div>
+            <h1 class="hero-title">Camposcuola <strong>Umbria</strong></h1>
+            <p class="hero-description">5 giorni immersi nella natura e nella storia del cuore verde d'Italia</p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">📅</div>
+                    <div class="meta-label">Durata</div>
+                    <div class="meta-value">5 Giorni</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🏞️</div>
+                    <div class="meta-label">Destinazione</div>
+                    <div class="meta-value">Umbria</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">💰</div>
+                    <div class="meta-label">Quota</div>
+                    <div class="meta-value">€300</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <div class="scroll-text">Scorri</div>
+        </div>
+    </section>
+    
+    <!-- Itinerary Timeline -->
+    <section id="programma">
+        <div class="section-header">
+            <div class="section-subtitle">Il Programma</div>
+            <h2 class="section-title">5 Giorni Indimenticabili</h2>
+            <p class="section-description">Un'esperienza formativa che unisce natura, cultura, sport e spiritualità</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">🚌</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 1 - Lunedì</div>
+                    <h3 class="timeline-title">Partenza e Arrivo in Umbria</h3>
+                    <p class="timeline-description">Partenza al mattino dal Liceo Manzoni. Arrivo in Umbria nel primo pomeriggio presso la struttura che ci ospiterà.</p>
+                    <ul class="timeline-highlights">
+                        <li>Partenza ore 8:00 dalla scuola</li>
+                        <li>Sistemazione nelle camere</li>
+                        <li>Presentazione del programma</li>
+                        <li>Passeggiata di orientamento nei dintorni</li>
+                        <li>Cena e attività di team building serale</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🏰</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 2 - Martedì</div>
+                    <h3 class="timeline-title">Assisi e San Francesco</h3>
+                    <p class="timeline-description">Giornata dedicata alla scoperta di Assisi, città di San Francesco, patrimonio UNESCO e tesoro di arte e spiritualità.</p>
+                    <ul class="timeline-highlights">
+                        <li>Visita guidata alla Basilica di San Francesco</li>
+                        <li>Passeggiata nel centro storico medievale</li>
+                        <li>Piazza del Comune e Tempio di Minerva</li>
+                        <li>Pranzo al sacco</li>
+                        <li>Visita alla Basilica di Santa Chiara</li>
+                        <li>Tempo libero per shopping</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🌲</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 3 - Mercoledì</div>
+                    <h3 class="timeline-title">Natura e Avventura</h3>
+                    <p class="timeline-description">Giornata all'insegna dello sport e del contatto con la natura umbra, tra boschi e sentieri.</p>
+                    <ul class="timeline-highlights">
+                        <li>Trekking guidato nei boschi dell'Appennino</li>
+                        <li>Percorso avventura con ponti tibetani</li>
+                        <li>Attività di orienteering</li>
+                        <li>Pranzo pic-nic in natura</li>
+                        <li>Laboratorio di educazione ambientale</li>
+                        <li>Serata con falò e osservazione stelle</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🎨</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 4 - Giovedì</div>
+                    <h3 class="timeline-title">Perugia e Tradizioni Umbre</h3>
+                    <p class="timeline-description">Scoperta del capoluogo umbro con i suoi monumenti, la storia etrusca e le eccellenze enogastronomiche.</p>
+                    <ul class="timeline-highlights">
+                        <li>Visita guidata al centro storico di Perugia</li>
+                        <li>Fontana Maggiore e Palazzo dei Priori</li>
+                        <li>Visita alla Casa del Cioccolato Perugina</li>
+                        <li>Corso Vannucci e shopping</li>
+                        <li>Workshop su tradizioni artigianali umbre</li>
+                        <li>Cena tipica umbra</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker">🏛️</div>
+                <div class="timeline-content">
+                    <div class="timeline-day">Giorno 5 - Venerdì</div>
+                    <h3 class="timeline-title">Spello e Rientro</h3>
+                    <p class="timeline-description">Ultima mattinata in Umbria visitando il borgo di Spello, poi preparativi per il rientro con il cuore pieno di ricordi.</p>
+                    <ul class="timeline-highlights">
+                        <li>Visita a Spello, borgo dei fiori</li>
+                        <li>Chiesa di Santa Maria Maggiore</li>
+                        <li>Foto di gruppo</li>
+                        <li>Pranzo e saluti</li>
+                        <li>Partenza per il rientro</li>
+                        <li>Arrivo previsto ore 18:00 circa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Activities Section -->
+    <section id="attivita" style="background: white;">
+        <div class="section-header">
+            <div class="section-subtitle">Le Nostre Attività</div>
+            <h2 class="section-title">Un'Esperienza Completa</h2>
+            <p class="section-description">Sport, cultura, spiritualità e divertimento per crescere insieme</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🥾</div>
+                <h3 class="feature-title">Trekking e Natura</h3>
+                <p class="feature-description">Escursioni guidate nei boschi umbri con guide esperte di educazione ambientale</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <h3 class="feature-title">Arte e Storia</h3>
+                <p class="feature-description">Visite guidate ai principali monumenti e chiese patrimonio dell'UNESCO</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧗</div>
+                <h3 class="feature-title">Sport e Avventura</h3>
+                <p class="feature-description">Percorsi avventura, orienteering e attività di team building all'aria aperta</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3 class="feature-title">Laboratori Creativi</h3>
+                <p class="feature-description">Workshop su artigianato locale e tradizioni umbre con esperti del territorio</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🍫</div>
+                <h3 class="feature-title">Enogastronomia</h3>
+                <p class="feature-description">Visita alla Casa del Cioccolato e degustazione di prodotti tipici umbri</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3 class="feature-title">Serate Speciali</h3>
+                <p class="feature-description">Falò, osservazione astronomica e momenti di condivisione di gruppo</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Details Section -->
+    <section id="dettagli">
+        <div class="section-header">
+            <div class="section-subtitle">Informazioni Pratiche</div>
+            <h2 class="section-title">Cosa Sapere</h2>
+        </div>
+        
+        <div class="inclusions-wrapper">
+            <div class="inclusion-box included">
+                <h3>✓ La Quota Include</h3>
+                <ul class="inclusion-list">
+                    <li>Viaggio A/R in pullman Gran Turismo</li>
+                    <li>Sistemazione in pensione completa (4 notti)</li>
+                    <li>Camere multiple con servizi privati</li>
+                    <li>Tutte le visite guidate del programma</li>
+                    <li>Ingressi a musei e monumenti</li>
+                    <li>Guide ed educatori qualificati</li>
+                    <li>Attività sportive e laboratori</li>
+                    <li>Assistenza docenti accompagnatori</li>
+                    <li>Assicurazione RC e infortuni</li>
+                </ul>
+            </div>
+            
+            <div class="inclusion-box excluded">
+                <h3>📝 Cosa Portare</h3>
+                <ul class="inclusion-list">
+                    <li>Documento d'identità valido</li>
+                    <li>Tessera sanitaria</li>
+                    <li>Scarpe da trekking o ginnastica comode</li>
+                    <li>Giacca a vento/impermeabile</li>
+                    <li>Borraccia riutilizzabile</li>
+                    <li>Zaino per escursioni</li>
+                    <li>Torcia o lampada frontale</li>
+                    <li>Prodotti per igiene personale</li>
+                    <li>Farmaci personali (se necessario)</li>
+                    <li>Denaro per spese personali</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section" id="iscrizioni">
+        <div class="cta-content">
+            <h2 class="cta-title">Pronto per l'Avventura?</h2>
+            <p class="cta-description">Un'esperienza di crescita e scoperta che rimarrà nel cuore</p>
+            <div class="cta-price">€300</div>
+            <p class="cta-description" style="font-size: 1rem; margin-bottom: 2rem;">Quota individuale omnicomprensiva</p>
+            <a href="mailto:camposcuola@liceomanzoni.it" class="cta-button">Iscriviti Ora</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Liceo Manzoni | Camposcuola Umbria | Per info: camposcuola@liceomanzoni.it</p>
+    </footer>
+    
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for timeline items
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
+        });
+        
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
